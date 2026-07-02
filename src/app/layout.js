@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import Navbar from "@/components/Navbar";
 import FrapCta from "@/components/FrapCta";
+import Script from "next/script";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +28,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: "Rental Outdoor",
   description: "Sewa perlengkapan outdoor dengan mudah, cepat, dan terpercaya",
-  manifest: "/manifest.json",
+  // manifest: "/manifest.json", // commented out — different domain (progressier.app)
+  manifest: "https://progressier.app/MvgRQWRxE41SzS1bWPfE/progressier.json",
 };
 
 export default function RootLayout({ children }) {
@@ -39,6 +41,10 @@ export default function RootLayout({ children }) {
           <main className="flex-1">{children}</main>
           <FrapCta />
         </Providers>
+        <Script
+          src="https://progressier.app/MvgRQWRxE41SzS1bWPfE/script.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
