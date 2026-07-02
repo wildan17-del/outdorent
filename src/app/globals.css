@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS — "Trail System"
+   Adapted from the Starbucks reference: same idea (a warm
+   neutral canvas + a calibrated multi-tone green + one reserved
+   accent), retuned for outdoor/camping instead of café.
+   Gold → "campfire amber", reserved for stats/status only,
+   same discipline as the reference's Rewards-only gold.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* Greens — four roles, not one brand green */
+  --forest-900: #12241e;   /* House Green analog — footer, dark bands */
+  --starbucks-green: #1f4d3a; /* headings, brand signal (kept var name used in page.js) */
+  --green-accent: #2f7a52;    /* CTA fill, links */
+  --green-uplift: #24463a;    /* secondary dark surface (stat cards etc.) */
+  --green-light: #dceae1;     /* pale wash — icon chips, tints */
+
+  /* Canvas */
+  --cream: #f3efe6;
+  --ceramic: #eae5d9;
+
+  /* Accent — reserved, like the reference's gold */
+  --gold: #c98a3b;
+  --gold-light: #e8c79a;
+
+  /* Text */
+  --text-black-soft: rgba(20, 26, 22, 0.62);
+  --text-black: rgba(20, 26, 22, 0.9);
+  --text-white-soft: rgba(255, 255, 255, 0.7);
+
+  /* Radius + motion, kept disciplined and consistent */
+  --radius-pill: 999px;
+  --radius-card: 16px;
+  --ease-press: cubic-bezier(0.32, 1.4, 0.6, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--text-black);
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-space), 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing: 0.06em;
+}
+
+/* ═══ Section surfaces ═══ */
+.section-dark {
+  background: var(--forest-900);
+}
+
+.section-cream {
+  background: var(--cream);
+}
+
+/* ═══ Buttons — full pill, scale(0.96) press, shared everywhere ═══ */
+.btn-white,
+.btn-outline-white,
+.btn-primary,
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s var(--ease-press), background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+.btn-white:active,
+.btn-outline-white:active,
+.btn-primary:active,
+.btn-outline-dark:active {
+  transform: scale(0.96);
+}
+
+.btn-white {
+  background: #ffffff;
+  color: var(--starbucks-green);
+  border: 1px solid #ffffff;
+}
+.btn-white:hover { background: var(--cream); }
+
+.btn-outline-white {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.btn-outline-white:hover { border-color: #ffffff; }
+
+.btn-primary {
+  background: var(--green-accent);
+  color: #ffffff;
+  border: 1px solid var(--green-accent);
+}
+.btn-primary:hover { background: var(--starbucks-green); }
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--starbucks-green);
+  border: 1.5px solid var(--starbucks-green);
+}
+.btn-outline-dark:hover { background: var(--green-light); }
+
+/* ═══ Cards ═══ */
+.card {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24);
+}
+
+.card-dark {
+  border-radius: var(--radius-card);
+}
+
+/* ═══ Eyebrow label — mono, tracked, used above every section title ═══ */
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* ═══ Floating cart button (Frap) ═══ */
+.frap-cta {
+  position: fixed;
+  bottom: 1.6rem;
+  right: 1.6rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.24), 0 8px 12px rgba(0, 0, 0, 0.14);
+  transition: transform 0.15s var(--ease-press), box-shadow 0.2s ease;
+  cursor: pointer;
+  z-index: 40;
+  border: none;
+  margin: -0.8rem;
+}
+.frap-cta:active {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.24), 0 8px 12px rgba(0, 0, 0, 0);
+  transform: scale(0.95);
+}
